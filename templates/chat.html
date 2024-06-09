@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="w-full h-[120vh] bg-gradient-to-br from-blue-200 to-purple-200 flex flex-col items-center">
+        <div class="w-full h-20 bg-white flex justify-center items-center text-[30px] font-bold">
+            Каталог чатов
+        </div>
+        <div class="w-[930px]">
+            <div class="flex flex-row items-center">
+                <img class="w-[20px] h-[20px]" src="{% static 'back.png' %}">
+                <a href="{% url 'vkchats-page' %}" class="text-[25px] ml-[10px] cursor-pointer">Назад</a>
+            </div>
+        </div>
+        <div class="flex justify-between w-[930px] h-[300px] mt-[12px] rounded-[7px] p-[15px] pt-[15px] bg-white">
+            <div class="flex flex-row">
+                <div class="flex items-center flex-col w-[200px]">
+                    <img class="w-[180px] h-[180px] rounded-[3px]" src="https://sun1-54.userapi.com/s/v1/ig2/cdLrYRMLz2pU_YURT9rlIGk7Lfupz_LqPQqRoeU3JOcpwq_V8KyBg6O4sBjAmLKnZj1FBbLu8e3gQn_jqRBkGjxs.jpg?size=200x0&quality=96&crop=0,0,992,992&ava=1">
+                    <a href="https://vk.me/join/RX_ILAH6z9LPrRgAs03IZf8Hi2W4S/oOUs8="><button class="w-[170px] h-[40px] bg-blue-500 text-white font-bold mt-[20px] rounded-[7px]">Открыть чат</button></a>
+                </div>
+                <div class="flex flex-col ml-[10px]">
+                    <a class="text-[25px]">{{chat.chat_title}}</a>
+                    <a class="text-[18px]">{{chat.participants}} участников</a>
+                </div>
+                <div class="flex flex-col items-end w-[400px]">
+                    <a class="text-gray-600">Чат был создан пользователем</a>
+                    <a class="text-[20px]">{{chat.creator_name}}</a>
+                    <img class="w-[100px] h-[100px] rounded-[7px]" src="{{chat.creator_image}}">
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col w-[930px] h-[180px] mt-[12px] rounded-[7px] p-[15px] pt-[15px] bg-white">
+            <a class="font-bold text-[20px]">Приглашение в чат:</a>
+            <div class="flex flex-col mt-[15px]">
+                <a>'{{chat.chat_title}}'</a>
+                <a class="text-blue-600" href="{{chat.chat_link}}">https://vk.me/join/RX_ILAH6z9LPrRgAs03IZf8Hi2W4S/oOUs8=</a>
+            </div>
+            <!-- <div class="flex flex-col mt-[15px]">
+                <a>{{chat.date}}</a>
+            </div> -->
+        </div>
+        <div class="flex flex-col justify-center w-[930px] h-[70px] mt-[12px] rounded-[7px] bg-white pl-[15px]">
+            <a class="font-bold text-[20px]">Дата обновления данных:</a>
+            <a>{{chat.last_updated}}</a>
+        </div>
+    </div>
+</body>
+</html>

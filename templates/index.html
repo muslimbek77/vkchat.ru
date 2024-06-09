@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vkchats</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="w-full h-[100vh] bg-gradient-to-br from-blue-200 to-purple-200 flex flex-col items-center">
+        <div class="w-full h-20 bg-white flex justify-center items-center text-[30px] font-bold">
+            Каталог чатов
+        </div>
+        <div class="bg-white w-[930px] h-[420px] mt-[12px] rounded-[7px] p-[20px] pt-[30px]">
+            <div class="text-[30px] font-bold">Поиск чатов по названиям:</div>
+            <div class="flex flex-row items-center text-[20px] mt-[10px]">
+                <img class="w-[20px] h-[20px]" src="{% static 'check.png' %}">
+                <a class="ml-[10px]">Найдите чат, в котором уже есть группа единомышленников</a>
+            </div>
+            <div class="text-[30px] font-bold mt-[20px]">Обновления:</div>
+            <div class="flex flex-row items-center text-[20px] mt-[20px]">
+                <img class="w-[20px] h-[20px]" src="{% static 'check.png' %}">
+                <a class="ml-[10px]">Прямо сейчас вас приглашают тысячи чатов</a>
+            </div>
+            <div class="flex flex-row items-center text-[20px] mt-[20px]">
+                <img class="w-[20px] h-[20px]" src="{% static 'check.png' %}">
+                <a class="ml-[10px]">{{chat_count}}</a></div>
+            <div class="mt-[50px]"><button class="flex flex-row justify-center items-center bg-blue-500 w-[200px] h-[50px] text-white font-bold rounded-3xl"><a href="{% url 'vkchats-page' %}">Перейти к поиску</a><img class="max-w-[20px] ml-[5px]" src="{% static 'right-arrow.png' %}"></button></div>
+        </div>
+    </div>
+</body>
+</html>

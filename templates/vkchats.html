@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="w-full h-auto bg-gradient-to-br from-blue-200 to-purple-200 flex flex-col items-center">
+        <div class="w-full h-20 bg-white flex justify-center items-center text-[30px] font-bold">
+            Каталог чатов
+        </div>
+        <div class="bg-white w-[930px] h-[110px] mt-[12px] rounded-[7px] p-[20px] pt-[30px]">
+            <div class="w-full mt-[-10px]">
+                <form method="GET" action="{% url 'vkchats-page' %}">
+                    <div class="input-group mb-3">
+                        <input name="q" placeholder="Поиск чата" type="text" class="form-control text-lg" aria-label="Default" aria-describedby="inputGroup-sizing-default" value="{{ search_query }}">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit">Поиск</button>
+                        </div>
+                    </div>
+                </form></div>
+        </div>
+        {% if vk_chats %}
+        {% for chat in vk_chats%}
+        <div class="flex justify-between items-center pl-[10px] w-[930px] h-[80px] bg-white rounded-[7px] mt-[15px]">
+            <div class="flex flex-row">
+                <div class="w-12"><img class="rounded-full" src="{{chat.image_url}}"></div>
+                <div class="flex flex-col ml-[10px]">
+                    <a href="{{chat.chat_link}}" class="font-bold">{{chat.title}}</a>
+                    <a>{{chat.members}}</a>
+                </div>
+            </div>
+            <div class="flex flex-row items-center w-[450px]">
+                <div class="w-[400px] overflow-hidden">
+                    <a>{{chat.description | truncatewords:10}}</a>
+                </div>
+                <div class="w-6 ml-[10px]">
+                    <a href="{{chat.chat_link}}"><img class="cursor-pointer" src="https://cdn-icons-png.flaticon.com/128/271/271228.png"></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        Ничего не найдено
+        {% endif %}
+              
+        <div class="flex justify-between items-center w-[930px] h-[70px] bg-white mt-[15px] rounded-[7px] pl-[160px] pr-[160px]">
+            <div class="flex flex-row items-center">
+                <img  class="w-[20px] h-[20px]" src="{% static 'back.png' %}">
+                <a href="{% url 'vkchats-page-num' prev %}" class="text-[25px] ml-[10px] cursor-pointer text-gray-500">Назад</a>
+            </div>
+            <div class="flex flex-row items-center cursor-pointer">
+                <a href="{% url 'vkchats-page-num' next %}" class="text-[25px]">Вперед</a>
+                <img class="w-[20px] h-[20px] ml-[10px]" src="{% static 'next.png' %}">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
